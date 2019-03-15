@@ -3,3 +3,18 @@
   = @movie.description
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
+  %p= link_to 'Add a comment', "#add_comment", "data-toggle" => "modal", class: 'btn btn-sm btn-default'
+
+%table.table.table-striped
+  %tbody
+    - @movie.comments.each_with_index do |comment, i|
+      %tr
+        %td= i + 1
+        %td= comment.user.email
+        %td= comment.comment_content
+        %td
+          = link_to 'Delete', comment_path(comment), class: 'btn btn-xs custom-btn', method: :delete
+          
+
+= render "add_comment"
+
