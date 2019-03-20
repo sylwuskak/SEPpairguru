@@ -1,5 +1,11 @@
 %h1= @movie.title
+
+- if @movie_data
+  %h3= "Rating " + @movie_data["rating"].to_s
+  %img.img-rounded{ src: @movie_data["poster_image"], style: "width: 200px" }
 .jumbotron
-  = @movie.description
+  - description = @movie_data.try(:[], "plot") ? @movie_data.try(:[], "plot") : @movie.description
+  = description
+
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
