@@ -15,4 +15,11 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
+    test "can reach API" do
+        get "/movies.json"
+        assert_response :success
+        get "/movies/1.json"
+        assert_response :success  
+    end
+
 end
