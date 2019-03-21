@@ -6,8 +6,6 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all.decorate
-<<<<<<< HEAD
-=======
     @movies_titles = @movies.map{|m| m.title}.uniq
     @movies_data = @movies_titles.map do |title|
       [title, movie_data(title.gsub(' ', ''))]
@@ -26,13 +24,10 @@ class MoviesController < ApplicationController
         render json: movies_json
       end
     end
->>>>>>> 15534dd... SEP Task 1
   end
 
   def show
     @movie = Movie.find(params[:id])
-<<<<<<< HEAD
-=======
     @movie_data = movie_data(@movie.title.gsub(' ', ''))
 
     respond_to do |format|
@@ -44,7 +39,6 @@ class MoviesController < ApplicationController
         }.to_json
       end
     end
->>>>>>> 15534dd... SEP Task 1
   end
 
   def send_info
