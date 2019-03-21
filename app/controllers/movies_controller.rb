@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
       [title, movie_data(title.gsub(' ', ''))]
     end.to_h
 
+    
     respond_to do |format|
       movies_json = @movies.map do |movie|
         {
@@ -30,6 +31,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @movie_data = movie_data(@movie.title.gsub(' ', ''))
 
+    
     respond_to do |format|
       format.html
       format.json do
