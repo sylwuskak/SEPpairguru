@@ -82,3 +82,18 @@ if Movie.count < 100
     )
   end
 end
+
+Rails.logger.info "Creating comments..."
+
+User.all.each do |user|
+  no_of_comments = (0..100).to_a.sample
+
+  (0..no_of_comments).to_a.each do |i|
+    Comment.create!(
+      user: user,
+      movie: Movie.find(i+1),
+      comment_content: "This is a simple comment"
+    )
+  end
+
+end

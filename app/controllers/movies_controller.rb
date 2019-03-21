@@ -59,6 +59,13 @@ class MoviesController < ApplicationController
     redirect_to root_path, notice: "Movies exported"
   end
 
+  def user_statistics
+    Rails.cache.fetch("#{Time.now}/competing_price", expires_in: 12.hours) do
+      comments = Comment.includes(:user).where("created_at > ?", Time.now-7.days) 
+      @users = comments.group_by{|c| c.user}.sort_by{|k, v| -v.length}.map{|k, v| [k, v.length]}[0..9]
+    end
+  end
+
   private
   def movie_data(title)
     url = "https://pairguru-api.herokuapp.com/api/v1/movies/" + title

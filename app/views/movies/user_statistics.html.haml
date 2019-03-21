@@ -1,0 +1,12 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %td 
+      %td User email
+      %td Number of comments
+  %tbody
+  - @users.each_with_index do |user, i|
+    %tr
+      %td= i + 1
+      %td= user.first.email
+      %td= user.second

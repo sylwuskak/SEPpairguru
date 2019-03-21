@@ -5,6 +5,7 @@ class AddComments < ActiveRecord::Migration[5.2]
 
       t.references :movie, null: false 
       t.references :user, null: false
+      t.timestamps
     end 
   end
 end

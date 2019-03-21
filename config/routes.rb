@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :export
+      get :user_statistics
     end
   end
 
